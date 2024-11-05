@@ -18,5 +18,6 @@ public class Main {
         frame.pack();
         braveDove.requestFocus();
         frame.setVisible(true);
+        Sound.playSound("C:\\Users\\matebook\\IdeaProjects\\bravedove\\src\\soundtrack.wav").join();//Music
         }
     }

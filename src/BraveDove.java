@@ -170,7 +170,7 @@ public class BraveDove extends JPanel implements ActionListener, KeyListener {
 
     }
 
-    @Override
+    @Override //render
     public void actionPerformed(ActionEvent e) {
         move();
         repaint();
