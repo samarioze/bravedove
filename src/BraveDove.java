@@ -17,6 +17,7 @@ public class BraveDove extends JPanel implements ActionListener, KeyListener {
     Image birdImg;
     Image topPipeImg;
     Image bottomPipeImg;
+    Image restartImg;
 
     //bird
     int birdX = boardWidth/8;
@@ -79,6 +80,7 @@ public class BraveDove extends JPanel implements ActionListener, KeyListener {
         birdImg = new ImageIcon(Objects.requireNonNull(getClass().getResource("./bird.png"))).getImage();
         topPipeImg = new ImageIcon(Objects.requireNonNull(getClass().getResource("./toppipe.png"))).getImage();
         bottomPipeImg = new ImageIcon(Objects.requireNonNull(getClass().getResource("./bottompipe.png"))).getImage();
+        restartImg = new ImageIcon(Objects.requireNonNull(getClass().getResource("./restartImg.png"))).getImage();
 
         //bird
         bird = new Bird(birdImg);
@@ -131,6 +133,7 @@ public class BraveDove extends JPanel implements ActionListener, KeyListener {
         g.setFont(new Font("Arial", Font.PLAIN, 32));
         if (gameOver) {
             g.drawString("Game Over:" + String.valueOf((int) score), 10, 35);
+            g.drawImage(restartImg, 325, 100, 376, 89, null); //buttonRestart
         }
         else {
             g.drawString(String.valueOf((int) score), 10,35);
@@ -184,8 +187,7 @@ public class BraveDove extends JPanel implements ActionListener, KeyListener {
     public void keyPressed(KeyEvent e) {
         if (e.getKeyCode() == KeyEvent.VK_SPACE) {
             velocityY = -9;
-            if (gameOver) {
-                //restart
+            if (gameOver) { //restart
                 bird.y = birdY;
                 velocityY = 0;
                 pipes.clear();
