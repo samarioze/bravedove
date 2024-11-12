@@ -9,6 +9,7 @@ import javax.swing.*;
 import java.util.Random;
 
 public class BraveDove extends JPanel implements ActionListener, KeyListener {
+
     int boardWidth = 1000;
     int boardHeight = 640;
 
