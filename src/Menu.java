@@ -1,11 +1,15 @@
 import java.awt.*;
-import java.awt.event.*;
-import java.util.Objects;
+import java.sql.SQLException;
 import javax.swing.*;
+import javax.swing.table.DefaultTableModel;
+import java.awt.event.ActionEvent;
+import java.awt.event.ActionListener;
+import java.sql.*;
+import java.util.Objects;
 
 public class Menu extends JFrame {
     boolean musicOn = true;
-    JTextField input = new JTextField("", 5);
+    public JTextField input = new JTextField("", 7);
     JLabel label = new JLabel("Your Name:");
     public Menu(){
         super("GameMenu");
@@ -20,17 +24,23 @@ public class Menu extends JFrame {
         JButton buttonStart = new JButton("Start game");
         buttonStart.addActionListener(new StartGame());
         container.add(buttonStart);
+
         JButton buttonScore = new JButton("Scoreboard");
+        buttonScore.addActionListener(new ScoreBoard());
         container.add(buttonScore);
+
         JButton buttonAbout = new JButton("About");
         buttonAbout.addActionListener(new About());
         container.add(buttonAbout);
+
         JButton buttonMusicOff = new JButton("Music Off");
         buttonMusicOff.addActionListener(new MusicOff());
         container.add(buttonMusicOff);
+
         JButton buttonMusicOn = new JButton("Music On");
         buttonMusicOn.addActionListener(new MusicOn());
         container.add(buttonMusicOn);
+
         JButton buttonExit = new JButton("Exit");
         buttonExit.addActionListener(new ExitGame());
         container.add(buttonExit);
@@ -62,6 +72,13 @@ public class Menu extends JFrame {
         }
     }
 
+    class ScoreBoard implements ActionListener {
+        public void actionPerformed (ActionEvent e) {
+            ScoreboardViewer viewer = new ScoreboardViewer();
+            viewer.setVisible(true);
+        }
+    }
+
     class MusicOn implements ActionListener {
         public void actionPerformed (ActionEvent e) {
             if (musicOn) {
@@ -77,9 +94,13 @@ public class Menu extends JFrame {
         }
     }
 
+    public String getInputText() {
+        return input.getText();
+    }
+
     class StartGame implements ActionListener {
         public void actionPerformed (ActionEvent e) {
-            String name = input.getText();
+            String name = getInputText();
             if(name.trim().isEmpty()) {
                 String messageError = "Your name is not provided. Please enter your name and then try again!";
                 JOptionPane.showMessageDialog(null, messageError, "Error Name", JOptionPane.PLAIN_MESSAGE);
@@ -102,4 +123,5 @@ public class Menu extends JFrame {
             }
         }
     }
+
 }

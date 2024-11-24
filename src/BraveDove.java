@@ -3,6 +3,7 @@ import java.awt.event.ActionEvent;
 import java.awt.event.ActionListener;
 import java.awt.event.KeyEvent;
 import java.awt.event.KeyListener;
+import java.sql.DriverManager;
 import java.util.ArrayList;
 import java.util.Objects;
 import javax.swing.*;
@@ -135,6 +136,7 @@ public class BraveDove extends JPanel implements ActionListener, KeyListener {
         if (gameOver) {
             g.drawString("Game Over:" + String.valueOf((int) score), 10, 35);
             g.drawImage(restartImg, 325, 100, 376, 89, null); //buttonRestart
+            //here input row in db
         }
         else {
             g.drawString(String.valueOf((int) score), 10,35);
